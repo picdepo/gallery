@@ -10,12 +10,25 @@
 
 Total items: {{ obj_tpl.total_items }}, Total pages: {{ obj_tpl.total_pages }}
 <br>
+
+<form method="get">
+    Image width: <input type="text" size="4" value="{{ obj_tpl.item_width }}" name="item_width">
+    Page: <input size="4" name="page" value="{{ obj_tpl.page }}" />
+    <input type="submit" value="set"></input>
+</form>
+<br>
+<a href="/gallery?item_width={{ obj_tpl.item_width }}&page={{ obj_tpl.prev_page }}">Prev Page</a>
+<a href="/gallery?item_width={{ obj_tpl.item_width }}&page={{ obj_tpl.next_page }}">Next Page</a>
+
+<br>
 {{ obj_tpl.html_pager | safe }}
 <br>
 
 {% for each in obj_tpl.list_items %}
 
-    <img class="gallery1" src="{{ obj_tpl.base_url_resizer }}/width/{{ obj_tpl.item_width }}/{{ each['filename_store'] | safe }}" />
+    <a href="/item/{{ each['id'] }}">
+        <img class="gallery1" src="{{ obj_tpl.base_url_resizer }}/width/{{ obj_tpl.item_width }}/{{ each['filename_store'] | safe }}" />
+    </a>
 
 {% endfor %}
     
