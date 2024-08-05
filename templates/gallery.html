@@ -1,0 +1,21 @@
+
+<style>
+    .gallery1 {
+        padding: 12px;
+        width: {{ obj_tpl.item_width }}px;
+    }
+</style>
+
+<h5>Gallery example - 25 items </h5>
+
+Total items: {{ obj_tpl.total_items }}, Total pages: {{ obj_tpl.total_pages }}
+<br>
+{{ obj_tpl.html_pager | safe }}
+<br>
+
+{% for each in obj_tpl.list_items %}
+
+    <img class="gallery1" src="{{ obj_tpl.base_url_resizer }}/width/{{ obj_tpl.item_width }}/{{ each['filename_store'] | safe }}" />
+
+{% endfor %}
+    
