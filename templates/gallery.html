@@ -27,7 +27,7 @@ Total items: {{ obj_tpl.total_items }}, Total pages: {{ obj_tpl.total_pages }}
 {% for each in obj_tpl.list_items %}
 
     <a href="/item/{{ each['id'] }}">
-        <img class="gallery1" src="{{ obj_tpl.base_url_resizer }}/width/{{ obj_tpl.item_width }}/{{ each['filename_store'] | safe }}" />
+        <img class="gallery1" src="{{ obj_tpl.base_url_resizer | safe }}/width/{{ obj_tpl.item_width }}/{{ each['filename_store'] | safe }}" />
     </a>
 
 {% endfor %}
