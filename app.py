@@ -37,7 +37,7 @@ def gallery():
 
     html_pager = ""
     for i in range(1, total_pages):
-        a = "<a href=\"/gallery?item_width=%s&page=%s\">%s</a>&nbsp;\n" % (item_width, i, i)
+        a = "<a href=\"/gallery?item_width=%s&page=%s&items_per_page=%s\">%s</a>&nbsp;\n" % (item_width, i, items_per_page, i)
         html_pager = html_pager + a
 
     prev_page = int(page) - 1

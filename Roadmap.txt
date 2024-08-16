@@ -1,0 +1,9 @@
+
+Create albums for images
+The ability to add image to multiple Albums
+
+Create labels or tags
+Attach tags to images
+
+tags:
+Family, Dira, Summer2024
