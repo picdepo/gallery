@@ -1,5 +1,5 @@
 from flask import Flask, request, redirect, url_for, send_file, render_template, jsonify
-import socket, applib, os, mydblib
+import socket, applib, os, mydblib, secretconf
 
 
 app = Flask(__name__)
@@ -12,9 +12,15 @@ def prp(msg):
     print(len(str(msg)))
 
 
+@app.route('/log/headers')
+def log_headers():
+    prp(request.headers)
+    return "log"
+
+
 @app.route('/')
 def hello_world():
-    return 'Hello, World!'
+    return redirect("/gallery", code=302)
 
 
 @app.route('/get_all_items')
@@ -67,7 +73,7 @@ def gallery():
 @app.route('/item/<item_id>', methods=['GET', 'POST'])
 def item(item_id):
 
-    sql = "select * from picdepo.uploads where id = %s"
+    sql = "select * from " + secretconf.dbname + ".uploads where id = %s"
     arr_data = mydblib.select(sql, (int(item_id),))
 
     prp(arr_data)

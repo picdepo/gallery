@@ -1,6 +1,10 @@
 source /venv1/bin/activate
 
-docker build -t leshkin/picdepo-gallery:v1 .
-
+docker build -t leshkin/picdepo-gallery:v3 .
+docker build -t leshkin/picdepo-gallery:v4 .
+docker build -t leshkin/picdepo-gallery:v5 .
 
 docker run -d --name t2 -p 6003:5003 --env-file /home/project/vars_env.txt leshkin/picdepo-gallery:v1
+
+
+docker build -t leshkin/picdepo-gallery:v5 .
