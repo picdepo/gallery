@@ -73,7 +73,7 @@ def gallery():
 @app.route('/item/<item_id>', methods=['GET', 'POST'])
 def item(item_id):
 
-    sql = "select * from " + secretconf.dbname + ".uploads where id = %s"
+    sql = "select * from " + secretconf.dbname + "." + secretconf.table_sort + " where id = %s"
     arr_data = mydblib.select(sql, (int(item_id),))
 
     prp(arr_data)

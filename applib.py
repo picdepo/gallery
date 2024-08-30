@@ -17,14 +17,14 @@ def db_get_items(items_per_page = 25, page = 0):
     prp(limit)
     prp(offset)
 
-    sql = "select * from %s.uploads order by id asc limit %s, %s" % (secretconf.dbname, int(offset), int(limit))
+    sql = "select * from %s.%s order by image_c_date, id asc limit %s, %s" % (secretconf.dbname, secretconf.table_sort, int(offset), int(limit))
     prp(sql)
     arr_data = mydblib.select(sql)
     return arr_data
 
 
 def db_get_items_count():
-    sql = "select count(*) cnt from %s.uploads" % (secretconf.dbname)
+    sql = "select count(*) cnt from %s.%s" % (secretconf.dbname, secretconf.table_sort)
     arr_data = mydblib.select(sql)
     return arr_data[0]["cnt"]
 
