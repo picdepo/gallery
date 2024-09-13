@@ -22,8 +22,11 @@ def get_db():
     return db_connection
 
 
-def insert(table_name, obj_data):
-    sql = "insert into " + table_name + " SET "
+def insert(table_name, obj_data, ignore = False):
+    if ignore:
+        sql = "insert ignore into " + table_name + " SET "
+    else:
+        sql = "insert into " + table_name + " SET "
     list_values = []
     for k, v in obj_data.items():
         if v == "now()":
