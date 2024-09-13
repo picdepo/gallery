@@ -2,22 +2,32 @@
 <meta name="viewport" content="width=device-width, initial-scale=1">
 
 <style>
-    .gallery1 {
+
+    .div1 {
         padding: 12px;
+        float: left;
+        width: {{ obj_tpl.item_width }}px;
+        height: {{ obj_tpl.item_width }}px;
+    }
+
+    .gallery1 {
+        padding: 4px;
         width: {{ obj_tpl.item_width }}px;
     }
 </style>
 
 <h5>Gallery example - 25 items </h5>
 
-Total items: {{ obj_tpl.total_items }}, Total pages: {{ obj_tpl.total_pages }}
+(v11) Total items: {{ obj_tpl.total_items }}, Total pages: {{ obj_tpl.total_pages }}
 <br>
 
 <form method="get">
     Image width: <input type="text" size="4" value="{{ obj_tpl.item_width }}" name="item_width">
     Items Per Page: <input size="4" name="items_per_page" value="{{ obj_tpl.items_per_page }}" />
     Page: <input size="4" name="page" value="{{ obj_tpl.page }}" />
-    <input type="submit" value="set"></input>
+    Date From <input name="date_from" size="12" value="{{ obj_tpl.date_from }}" >
+    Date To <input name="date_to" size="12" value="{{ obj_tpl.date_to }}" >
+    <input type="submit" value="Go"></input>
 </form>
 <br>
 <a href="/gallery?item_width={{ obj_tpl.item_width }}&page={{ obj_tpl.prev_page }}&items_per_page={{ obj_tpl.items_per_page }}">Prev Page</a>
@@ -29,9 +39,13 @@ Total items: {{ obj_tpl.total_items }}, Total pages: {{ obj_tpl.total_pages }}
 
 {% for each in obj_tpl.list_items %}
 
+    <div class="div1">
     <a href="/item/{{ each['id'] }}">
         <img class="gallery1" src="{{ obj_tpl.base_url_resizer | safe }}/width/{{ obj_tpl.item_width }}/{{ each['filename_store'] | safe }}" />
     </a>
+    <br>
+    <a href="/item/delete/{{ each['id'] }}">Del</a>
+    </div>
 
 {% endfor %}
     
