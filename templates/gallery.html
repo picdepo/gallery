@@ -1,6 +1,8 @@
 
 <meta name="viewport" content="width=device-width, initial-scale=1">
 
+<script src="/static/jslib/jquery371.js"></script>
+
 <style>
 
     .div1 {
@@ -19,7 +21,14 @@
 <h5>Gallery example - 25 items </h5>
 
 (v11) Total items: {{ obj_tpl.total_items }}, Total pages: {{ obj_tpl.total_pages }}
+&nbsp;&nbsp;&nbsp;<button style="float: right" onclick="toggle1()">Show Delete</button>
 <br>
+
+<script>
+function toggle1(){
+    $(".link_del").toggle()
+}
+</script>
 
 <form method="get">
     Image width: <input type="text" size="4" value="{{ obj_tpl.item_width }}" name="item_width">
@@ -30,8 +39,8 @@
     <input type="submit" value="Go"></input>
 </form>
 <br>
-<a href="/gallery?item_width={{ obj_tpl.item_width }}&page={{ obj_tpl.prev_page }}&items_per_page={{ obj_tpl.items_per_page }}">Prev Page</a>
-<a href="/gallery?item_width={{ obj_tpl.item_width }}&page={{ obj_tpl.next_page }}&items_per_page={{ obj_tpl.items_per_page }}">Next Page</a>
+<a href="/gallery?date_from={{ obj_tpl.date_from }}&date_to={{ obj_tpl.date_to }}&item_width={{ obj_tpl.item_width }}&page={{ obj_tpl.prev_page }}&items_per_page={{ obj_tpl.items_per_page }}">Prev Page</a>
+<a href="/gallery?date_from={{ obj_tpl.date_from }}&date_to={{ obj_tpl.date_to }}&item_width={{ obj_tpl.item_width }}&page={{ obj_tpl.next_page }}&items_per_page={{ obj_tpl.items_per_page }}">Next Page</a>
 
 <br>
 {{ obj_tpl.html_pager | safe }}
@@ -44,7 +53,8 @@
         <img class="gallery1" src="{{ obj_tpl.base_url_resizer | safe }}/width/{{ obj_tpl.item_width }}/{{ each['filename_store'] | safe }}" />
     </a>
     <br>
-    <a href="/item/delete/{{ each['id'] }}">Del</a>
+    <a class="link_del" href="/item/delete/{{ each['id'] }}">Delete</a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+    <a href="{{ obj_tpl.base_url_resizer | safe }}/orig/d/{{ each['filename_store'] | safe }}">Dowload Full Size</a>
     </div>
 
 {% endfor %}

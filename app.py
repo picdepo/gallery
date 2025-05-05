@@ -41,6 +41,7 @@ def gallery():
 
     #http://5.39.75.231:30001/width/400/t1722881510t6650c342-6a50-4fe7-b53c-67b0087d8db6.jpg
     list_items = applib.db_get_items(date_from, date_to, items_per_page, page)
+    prp(list_items)
     total_items = applib.db_get_items_count(date_from, date_to)
     prp("total items:" + str(total_items))
 
@@ -121,6 +122,6 @@ def item_delete(item_id):
 
 if __name__ == "__main__":
     if socket.gethostname() == "610757e602ef":
-        app.run('0.0.0.0', 5003, debug = True)
+        app.run('0.0.0.0', 5005, debug = True)
     else:
         app.run('0.0.0.0', 5003)

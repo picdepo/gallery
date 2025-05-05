@@ -17,7 +17,7 @@ def db_get_items(date_from, date_to, items_per_page = 25, page = 0):
     prp(limit)
     prp(offset)
 
-    sql = "select * from %s.%s where deleted = 0 and image_c_date >= '%s' and image_c_date < '%s' order by image_c_date, id asc limit %s, %s" % (secretconf.dbname, secretconf.table_sort, date_from, date_to, int(offset), int(limit))
+    sql = "select * from %s.%s where deleted = 0 and image_c_date >= '%s' and image_c_date < '%s' order by sort_date, id asc limit %s, %s" % (secretconf.dbname, secretconf.table_sort, date_from, date_to, int(offset), int(limit))
     prp(sql)
     arr_data = mydblib.select(sql)
     return arr_data
